@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 84" width="360" height="84" fill="none">
+  <!-- Circle Badge Mark -->
+  <g transform="translate(4, 4)">
+    <circle cx="38" cy="38" r="35" stroke="#ffffff" stroke-width="3" />
+    <circle cx="38" cy="38" r="29" stroke="#8bdb45" stroke-width="1.5" stroke-opacity="0.5" />
+    
+    <!-- Growth arrow -->
+    <path
+      d="M18 52 L34 35 L43 44 L60 21 M48 21 H60 V33"
+      stroke="#8bdb45"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+
+  <!-- Typography -->
+  <!-- "ONE WAY" bold condensed in brand lime -->
+  <text
+    x="94"
+    y="42"
+    font-family="'Antonio', 'Impact', sans-serif"
+    font-size="40"
+    font-weight="700"
+    fill="#8bdb45"
+    letter-spacing="1.5"
+  >ONE WAY</text>
+
+  <!-- "DIGITAL MEDIA" spaced caps -->
+  <text
+    x="96"
+    y="66"
+    font-family="'Outfit', 'Segoe UI', sans-serif"
+    font-size="12.5"
+    font-weight="600"
+    fill="#f1f2f0"
+    letter-spacing="5"
+    opacity="0.95"
+  >DIGITAL MEDIA</text>
+</svg>
