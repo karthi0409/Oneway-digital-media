@@ -49,6 +49,10 @@ const projectSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isIllustrative: {
+      type: Boolean,
+      default: false,
+    },
     order: {
       type: Number,
       default: 0,

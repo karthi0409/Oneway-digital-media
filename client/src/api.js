@@ -61,16 +61,11 @@ export async function submitEnquiry(payload) {
  * @param {string} [category]
  */
 export async function fetchProjects(category) {
-  try {
-    const url = category && category !== 'all'
-      ? `${API_BASE}/projects?category=${encodeURIComponent(category)}`
-      : `${API_BASE}/projects`;
-    const res = await fetch(url);
-    return await handleResponse(res);
-  } catch (err) {
-    console.warn('API fetchProjects error (falling back to empty list):', err.message);
-    return { success: false, data: [] };
-  }
+  const url = category && category !== 'all'
+    ? `${API_BASE}/projects?category=${encodeURIComponent(category)}`
+    : `${API_BASE}/projects`;
+  const res = await fetch(url);
+  return handleResponse(res);
 }
 
 /**

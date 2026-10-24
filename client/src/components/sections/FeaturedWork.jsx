@@ -4,11 +4,13 @@ import { FiX, FiExternalLink, FiArrowRight, FiInbox } from 'react-icons/fi';
 import ProjectCategories from './ProjectCategories.jsx';
 import Heading from '../ui/Heading.jsx';
 import { fetchProjects } from '../../api.js';
+import { showcaseProjects } from '../../../../shared/data/showcaseProjects.mjs';
 
 export default function FeaturedWork() {
   const [category, setCategory] = useState('all');
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [usingShowcaseProjects, setUsingShowcaseProjects] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
 
   useEffect(() => {
@@ -18,15 +20,23 @@ export default function FeaturedWork() {
     fetchProjects(category)
       .then((res) => {
         if (isMounted) {
-          const list = (res && res.data) || [];
-          setProjects(list);
+          const list = Array.isArray(res?.data) ? res.data : [];
+          const fallback = category === 'all'
+            ? showcaseProjects
+            : showcaseProjects.filter((project) => project.category === category);
+          setUsingShowcaseProjects(list.length === 0);
+          setProjects(list.length > 0 ? list : fallback);
           setLoading(false);
         }
       })
       .catch((err) => {
         if (isMounted) {
           console.warn('Error loading projects:', err);
-          setProjects([]);
+          const fallback = category === 'all'
+            ? showcaseProjects
+            : showcaseProjects.filter((project) => project.category === category);
+          setUsingShowcaseProjects(true);
+          setProjects(fallback);
           setLoading(false);
         }
       });
@@ -49,6 +59,20 @@ export default function FeaturedWork() {
 
         {/* Filter Categories */}
         <ProjectCategories currentCategory={category} onSelectCategory={setCategory} />
+
+        {!loading && usingShowcaseProjects && (
+          <p className="project-showcase-notice" role="status">
+            Showing illustrative project concepts because published projects could not be loaded from the project database.
+            These examples are not completed client engagements, and no performance results are claimed.
+          </p>
+        )}
+
+        {!loading && !usingShowcaseProjects && projects.some((project) => project.isIllustrative) && (
+          <p className="project-showcase-notice">
+            These are illustrative project concepts created to show possible approaches. They are not completed client
+            engagements, and no performance results are claimed.
+          </p>
+        )}
 
         {/* Loading Spinner */}
         {loading && (
@@ -77,6 +101,7 @@ export default function FeaturedWork() {
                   )}
                 </div>
                 <div className="project-card-info">
+                  {proj.isIllustrative && <span className="project-showcase-label">Illustrative concept</span>}
                   <span className="project-category-tag">{proj.category}</span>
                   <h3 className="project-title">{proj.title}</h3>
                   <p className="project-result">{proj.result || proj.client}</p>
@@ -134,12 +159,17 @@ export default function FeaturedWork() {
               <span className="section-tag" style={{ marginBottom: '0.75rem' }}>
                 {activeProject.category}
               </span>
+              {activeProject.isIllustrative && (
+                <p className="project-showcase-notice project-showcase-notice-modal">
+                  Illustrative concept — not a completed client engagement or verified result.
+                </p>
+              )}
               <h2 style={{ fontSize: '2rem', marginBottom: '0.5rem', color: 'var(--white)' }}>
                 {activeProject.title}
               </h2>
               {activeProject.client && (
                 <p style={{ color: 'var(--lime)', fontWeight: 600, marginBottom: '1.25rem' }}>
-                  Client: {activeProject.client}
+                  {activeProject.isIllustrative ? 'Project type' : 'Client'}: {activeProject.client}
                 </p>
               )}
 
