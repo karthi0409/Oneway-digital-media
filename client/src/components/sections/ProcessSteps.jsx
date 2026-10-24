@@ -20,20 +20,11 @@ export default function ProcessSteps({ theme = 'light' }) {
           {processSteps.map((step) => (
             <div
               key={step.step}
-              className="process-card"
-              style={
-                isDark
-                  ? {
-                      backgroundColor: 'var(--navy-panel)',
-                      borderColor: 'var(--navy-line)',
-                      color: 'var(--white)',
-                    }
-                  : {}
-              }
+              className={`process-card ${isDark ? 'process-card-dark' : ''}`}
             >
               <div className="process-badge">{step.step}</div>
-              <h4 style={isDark ? { color: 'var(--white)' } : {}}>{step.title}</h4>
-              <p style={isDark ? { color: 'rgba(241, 242, 240, 0.75)' } : {}}>{step.text}</p>
+              <h4>{step.title}</h4>
+              <p>{step.text}</p>
             </div>
           ))}
         </div>

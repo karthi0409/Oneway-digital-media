@@ -1,6 +1,7 @@
 import React from 'react';
 import PageHero from '../components/ui/PageHero.jsx';
 import ServiceDetail from '../components/sections/ServiceDetail.jsx';
+import MarketingChannels from '../components/sections/MarketingChannels.jsx';
 import WebPlans from '../components/sections/WebPlans.jsx';
 import CtaSection from '../components/sections/CtaSection.jsx';
 import { services } from '../data/services.js';
@@ -31,6 +32,8 @@ export default function Services() {
           />
         ))}
       </div>
+
+      <MarketingChannels />
 
       {/* Web Development Plans Showcase */}
       <WebPlans />

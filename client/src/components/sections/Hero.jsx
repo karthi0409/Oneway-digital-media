@@ -1,52 +1,26 @@
-import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiPhone, FiMapPin, FiTrendingUp, FiBarChart2, FiCheck } from 'react-icons/fi';
 import Ribbon from '../ui/Ribbon.jsx';
 import { company } from '../../data/company.js';
 
-export default function Hero() {
-  const heroRef = useRef(null);
-  const audiences = [
-    'Startups & Innovators',
-    'Local SMBs & Clinics',
-    'D2C & E-Commerce',
-    'Real Estate & B2B',
-  ];
+const audiences = [
+  'Startups & Innovators',
+  'Local SMBs & Clinics',
+  'D2C & E-Commerce',
+  'Real Estate & B2B',
+];
 
+export default function Hero() {
   return (
     <>
       <section
-        ref={heroRef}
         className="hero-section"
         aria-label="Hero Introduction"
-        onPointerMove={(event) => {
-          if (
-            event.pointerType === 'touch' ||
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-            !heroRef.current
-          ) return;
-          const bounds = heroRef.current.getBoundingClientRect();
-          const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-          const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-          heroRef.current.style.setProperty('--visual-x', `${(x * 12).toFixed(2)}px`);
-          heroRef.current.style.setProperty('--visual-y', `${(y * 12).toFixed(2)}px`);
-          heroRef.current.style.setProperty('--orb-one-x', `${(x * -26).toFixed(2)}px`);
-          heroRef.current.style.setProperty('--orb-one-y', `${(y * -20).toFixed(2)}px`);
-          heroRef.current.style.setProperty('--orb-two-x', `${(x * 34).toFixed(2)}px`);
-          heroRef.current.style.setProperty('--orb-two-y', `${(y * 26).toFixed(2)}px`);
-        }}
-        onPointerLeave={() => {
-          heroRef.current?.style.setProperty('--visual-x', '0px');
-          heroRef.current?.style.setProperty('--visual-y', '0px');
-          heroRef.current?.style.setProperty('--orb-one-x', '0px');
-          heroRef.current?.style.setProperty('--orb-one-y', '0px');
-          heroRef.current?.style.setProperty('--orb-two-x', '0px');
-          heroRef.current?.style.setProperty('--orb-two-y', '0px');
-        }}
       >
-        <div className="hero-glow" aria-hidden="true" />
-        <div className="hero-orb hero-orb-one" aria-hidden="true" />
-        <div className="hero-orb hero-orb-two" aria-hidden="true" />
+        <div className="hero-scene" aria-hidden="true">
+          <div className="hero-glow" />
+        </div>
+
         <div className="container">
           <div className="hero-content">
             <div className="hero-copy">
@@ -56,9 +30,9 @@ export default function Hero() {
               </div>
 
               <h1 className="hero-title">
-                <span className="title-line">Digital that</span>
-                <span className="title-line lime-word">moves business</span>
-                <span className="title-line">forward.</span>
+                <span className="title-line">Build a brand</span>
+                <span className="title-line lime-word">that moves</span>
+                <span className="title-line">business forward.</span>
               </h1>
 
               <p className="hero-pillars">
@@ -75,7 +49,7 @@ export default function Hero() {
                   <FiArrowRight />
                 </Link>
                 <Link to="/contact#enquiry" className="btn btn-outline btn-lg">
-                  <span>Let’s Talk</span>
+                  <span>Start a Project</span>
                 </Link>
               </div>
             </div>
@@ -89,7 +63,7 @@ export default function Hero() {
                   </div>
                   <span className="growth-icon"><FiBarChart2 /></span>
                 </div>
-                <div className="growth-chart" aria-hidden="true">
+                <div className="growth-chart">
                   <span style={{ height: '36%' }} />
                   <span style={{ height: '52%' }} />
                   <span style={{ height: '44%' }} />
@@ -112,16 +86,14 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Lime Ribbon */}
       <Ribbon text="Strategy • Content • Advertising • Technology" />
 
-      {/* Hero Bottom Audience Bar */}
       <div className="hero-bottom-strip">
         <div className="container">
           <div className="hero-audiences">
-            {audiences.map((aud, index) => (
-              <span key={index} className="hero-audience-tag">
-                {aud}
+            {audiences.map((audience) => (
+              <span key={audience} className="hero-audience-tag">
+                {audience}
               </span>
             ))}
           </div>

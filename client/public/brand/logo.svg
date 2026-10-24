@@ -6,9 +6,9 @@
     
     <!-- Growth arrow -->
     <path
-      d="M18 52 L34 35 L43 44 L60 21 M48 21 H60 V33"
+      d="M16 54 L34 34 L44 44 L62 18 M49 18 H62 V31"
       stroke="#8bdb45"
-      stroke-width="5"
+      stroke-width="6"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
@@ -31,10 +31,10 @@
     x="96"
     y="66"
     font-family="'Outfit', 'Segoe UI', sans-serif"
-    font-size="12.5"
+    font-size="15"
     font-weight="600"
     fill="#f1f2f0"
-    letter-spacing="5"
+    letter-spacing="4"
     opacity="0.95"
   >DIGITAL MEDIA</text>
 </svg>

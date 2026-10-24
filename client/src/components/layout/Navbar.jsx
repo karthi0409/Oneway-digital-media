@@ -40,7 +40,7 @@ export default function Navbar() {
         <div className="nav-container">
           {/* Brand Logo */}
           <div className="nav-brand">
-            <Logo height={52} />
+            <Logo height={56} />
           </div>
 
           {/* Desktop Navigation Links */}
@@ -96,7 +96,7 @@ export default function Navbar() {
         aria-hidden={!mobileOpen}
       >
         <div className="mobile-drawer-header">
-          <Logo height={38} />
+          <Logo height={42} />
           <button
             type="button"
             className="menu-toggle"

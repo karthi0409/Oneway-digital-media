@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar.jsx';
 import Footer from './Footer.jsx';
 import FloatingContact from './FloatingContact.jsx';
+import MouseFollower from './MouseFollower.jsx';
 
 export default function Layout() {
   const { pathname, hash } = useLocation();
@@ -41,6 +42,7 @@ export default function Layout() {
       {/* Floating Action Buttons */}
       <FloatingContact />
 
+      <MouseFollower />
     </div>
   );
 }
